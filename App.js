@@ -17,213 +17,310 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+let value_1 = 0;
 let value = 0;
-
+let button = 0;
+let result = 0;
+let operator = '';
+let lastOperator = '';
 class Calculator extends React.Component {
 
 
 
   state = {
     currentState: 0,
-    firstValue:'',
-    secondValue:'',
-    operator:'',
-    result:'',
+    firstValue: '',
+    secondValue: '',
+    operator: '',
   }
 
 
 
   firstMethod = (value) => {
 
-    if (this.state.firstValue =='') {
-
+    if (button == 0) {
+      button = 1;
       switch (value) {
 
         case 1:
           this.setState({
             currentState: this.state.currentState = 1,
-            firstValue: this.state.firstValue = 1
           })
           break;
         case 2:
           this.setState({
             currentState: this.state.currentState = 2,
-            firstValue: this.state.firstValue = 2
           })
+
           break;
         case 3:
           this.setState({
             currentState: this.state.currentState = 3,
-            firstValue: this.state.firstValue = 3
           })
           break;
         case 4:
           this.setState({
             currentState: this.state.currentState = 4,
-            firstValue: this.state.firstValue = 4
           })
           break;
         case 5:
           this.setState({
             currentState: this.state.currentState = 5,
-            firstValue: this.state.firstValue = 5
           })
           break;
         case 6:
           this.setState({
             currentState: this.state.currentState = 6,
-            firstValue: this.state.firstValue = 6
           })
           break;
         case 7:
           this.setState({
             currentState: this.state.currentState = 7,
-            firstValue: this.state.firstValue = 7
           })
           break;
         case 8:
           this.setState({
             currentState: this.state.currentState = 8,
-            firstValue: this.state.firstValue = 8
           })
           break;
         case 9:
           this.setState({
             currentState: this.state.currentState = 9,
-            firstValue: this.state.firstValue = 9
           })
           break;
         case 10:
 
           this.setState({
             currentState: this.state.currentState = 0,
-            firstValue: this.state.firstValue = 0
           })
           break;
 
       }
-    } else if (this.state.secondValue == '') {
 
-      switch (value) {
+    } else {
+      if (button == 1) {
+        switch (value) {
 
-        case 1:
-          this.setState({
-            secondValue: this.state.secondValue = 1
-          })
-          break;
-        case 2:
-          this.setState({
-            secondValue: this.state.secondValue = 2
-          })
-          break;
-        case 3:
-          this.setState({
-            secondValue: this.state.secondValue = 3
-          })
-          break;
-        case 4:
-          this.setState({
-            secondValue: this.state.secondValue = 4
-          })
-          break;
-        case 5:
-          this.setState({
-            secondValue: this.state.secondValue = 5
-          })
-          break;
-        case 6:
-          this.setState({
-            secondValue: this.state.secondValue = 6
-          })
-          break;
-        case 7:
-          this.setState({
-            secondValue: this.state.secondValue = 7
-          })
-          break;
-        case 8:
-          this.setState({
-            secondValue: this.state.secondValue = 8
-          })
-          break;
-        case 9:
-          this.setState({
-            secondValue: this.state.secondValue = 9
-          })
-          break;
-        case 10:
-
-          this.setState({
-            secondValue: this.state.secondValue = 0
-          })
-          break;
-      }
-    }
-      else {
-        alert("You are not allow to enter value greater than 10 or please enter please type operator")
-    }
-  }
-
-  calculations=()=>{
-    switch(this.state.operator){
-      case '+':
-      
-      this.setState({
-         
-        currentState:this.state.firstValue + this.state.secondValue,       
-        firstValue: this.state.firstValue = '',
-        operator: this.state.operator = '',
-        secondValue:this.state.secondValue='',     
-      })   
-      alert(this.state.currentState);
-      
-      break;  
-         
-      case '-':
+          case 1:
             this.setState({
-              currentState:this.state.firstValue - this.state.secondValue,
-              firstValue: this.state.firstValue = '',
-              operator: this.state.operator = '',
-              secondValue:this.state.secondValue='',
-          
+              currentState: this.state.currentState + "" + 1
+
             })
             break;
-      case '*':
-              this.setState({
-                
-                currentState:this.state.firstValue * this.state.secondValue,
-                firstValue: this.state.firstValue = '',
-                operator: this.state.operator = '',
-                secondValue:this.state.secondValue='',
-                        
-              })
-              break;
-      case '/':
-      this.setState({
-        currentState:this.state.firstValue / this.state.secondValue,
-        firstValue: this.state.firstValue = '',
-        operator: this.state.operator = '',
-        secondValue:this.state.secondValue='',
-      })
-           
+          case 2:
+            this.setState({
+              currentState: this.state.currentState + "" + 2,
+            })
+            break;
+          case 3:
+            this.setState({
+              currentState: this.state.currentState + "" + 3,
+            })
+            break;
+          case 4:
+            this.setState({
+              currentState: this.state.currentState + "" + 4,
+            })
+            break;
+          case 5:
+            this.setState({
+              currentState: this.state.currentState + "" + 5,
+            })
+            break;
+          case 6:
+            this.setState({
+              currentState: this.state.currentState + "" + 6,
+            })
+            break;
+          case 7:
+            this.setState({
+              currentState: this.state.currentState + "" + 7,
+            })
+            break;
+          case 8:
+            this.setState({
+              currentState: this.state.currentState + "" + 8,
+            })
+            break;
+          case 9:
+            this.setState({
+              currentState: this.state.currentState + "" + 9,
+            })
+            break;
+          case 10:
+
+            this.setState({
+              currentState: this.state.currentState + "" + 0,
+            })
+            break;
+
+        }
+      }
+    }
+  }
+
+  calculations = (lastOperator, operator) => {
+    switch (lastOperator) {
+      case '+':
+
+        value_1 = this.state.currentState;
+        value_1 = parseInt(value_1);
+        result = result + value_1;
+        this.setState({
+          currentState: this.state.currentState = '',
+          firstValue: this.state.firstValue = this.state.firstValue + value_1 + operator,
+          secondValue: this.state.secondValue = result,
+        });
+    break;
+       
+      case '-':
+        if (result==0){
+          value_1 = this.state.currentState;
+          result = parseInt(value_1);            
+          this.setState({
+            currentState: this.state.currentState = '',
+            firstValue: this.state.firstValue = this.state.firstValue + value_1 + operator,
+            secondValue: this.state.secondValue = result,
+          });
+          break;
+         }
+        else{
+         value_1 = this.state.currentState;
+         value_1 = parseInt(value_1);
+        result = result - value_1;
+        this.setState({
+          currentState: this.state.currentState = '',
+          firstValue: this.state.firstValue = this.state.firstValue + value_1 + operator,
+          secondValue: this.state.secondValue = result,
+        });
+      
         break;
+      }
+        
+      case '*':
+        
+        if(result==0){   
+        value_1 = this.state.currentState;
+        result = parseInt(value_1);
+        this.setState({
+          currentState: this.state.currentState = '',
+          firstValue: this.state.firstValue = this.state.firstValue + value_1 + operator,
+          secondValue: this.state.secondValue = result,
+        });
+        break;
+      }
+        else{
+          value_1 = this.state.currentState;
+          result = parseInt(value_1);
+          result= result * value_1;
+          this.setState({
+            currentState: this.state.currentState = '',
+            firstValue: this.state.firstValue = this.state.firstValue + value_1 + operator,
+            secondValue: this.state.secondValue = result,
+          });
+          break;
+        }
+      case '/':
+       if (result==0){  
+          value_1 = this.state.currentState;
+          result = parseInt(value_1);
+          this.setState({
+          currentState: this.state.currentState = '',
+          firstValue: this.state.firstValue = this.state.firstValue + value_1 + operator,
+          secondValue: this.state.secondValue = result,
+        });
+        
+        break;
+      }else {
+        value_1 = this.state.currentState;
+        value_1 = parseInt(value_1);
+        result = result / value_1;
+        this.setState({
+          currentState: this.state.currentState = '',
+          firstValue: this.state.firstValue = this.state.firstValue + value_1 + operator,
+          secondValue: this.state.secondValue = result,
+        });
+      
+        break;
+      }
     }
 
+
   }
-  
+
+  showResult = (operator) => {
+    switch (operator) {
+      case '+':
+        value_1 = this.state.currentState;
+        value_1 = parseInt(value_1);
+        result = result + value_1;
+        this.setState({
+          currentState: this.state.currentState =0,
+          firstValue: this.state.firstValue ='',
+          secondValue: this.state.secondValue = result,
+        });
+        result = 0;
+        break;
+      case '-':
+        value_1 = this.state.currentState;
+        value_1 = parseInt(value_1);
+        result = result - value_1;
+        this.setState({
+          currentState: this.state.currentState = 0,
+          firstValue: this.state.firstValue = '',
+          secondValue: this.state.secondValue = result,
+        });
+        result = 0;
+        break;
+      case '*':
+        value_1 = this.state.currentState;
+        value_1 = parseInt(value_1);
+        result = result * value_1;
+        this.setState({
+          currentState: this.state.currentState = 0,
+          firstValue: this.state.firstValue = '',
+          secondValue: this.state.secondValue = result,
+        });
+        result = 0;
+        break;
+      case '/':
+        value_1 = this.state.currentState;
+        value_1 = parseInt(value_1);
+        result = result / value_1;
+        this.setState({
+          currentState: this.state.currentState = 0,
+          firstValue: this.state.firstValue = '',
+          secondValue: this.state.secondValue = result,
+        });
+        result = 0;
+        break;
+    }
+  }
+
+
+
   render() {
 
     return (
       <View style={{ width: "100%", height: "100%", backgroundColor: 'white' }}>
 
         {/*calculator screen  */}
-        <View style={{ width: "100%", height: "36%", backgroundColor: "#e1ccec" }}>
+        <View style={{ width: "100%", height: "25%", backgroundColor: "#e1ccec" }}>
           <Text style={{
             width: "100%", height: "100%",
+
             color: 'white', fontSize: 40, marginLeft: "3%"
           }}>
-  {this.state.currentState}{this.state.operator}{this.state.secondValue}{this.state.result}</Text>
+            {this.state.firstValue}{this.state.currentState}</Text>
         </View>
+
+        <View style={{ width: "100%", height: "11%", backgroundColor: "#e1ccec" }}>
+          <Text style={{
+            color: 'white', fontSize: 35, marginLeft: "3%", marginTop: "-1%"
+          }}>
+            {this.state.secondValue}</Text>
+        </View>
+
         {/* end of calculator screen  */}
 
 
@@ -283,15 +380,21 @@ class Calculator extends React.Component {
               borderWidth: 1, borderColor: 'white',
               borderRadius: 5, justifyContent: 'center', alignItems: 'center'
             }} onPress={() => {
-           
-           
-           
+
+
+
               this.setState({
                 currentState: this.state.currentState = 0,
+                secondValue: this.state.secondValue = 0,
                 firstValue: this.state.firstValue = '',
-                operator: this.state.operator = '',
-                secondValue:this.state.secondValue='',
+
               })
+              value_1 = 0;
+              button = 0;
+              value = 0;
+              operator = '';
+              lastOperator = '';
+              result = 0;
             }}
 
 
@@ -360,10 +463,21 @@ class Calculator extends React.Component {
               borderWidth: 1, borderColor: 'white',
               borderRadius: 5, justifyContent: 'center', alignItems: 'center'
             }} onPress={() => {
-              this.setState({
-                operator: this.state.operator = '+',
-              })
-            }}
+
+              if (lastOperator == '') {
+                lastOperator = '+';
+                operator = '+';
+                this.calculations(lastOperator, operator);
+              }
+              else {
+                lastOperator = operator;
+                operator = '+';
+                this.calculations(lastOperator, operator);
+              }
+
+            }
+            }
+
             >
               <Text style={{ color: 'white', fontSize: 40 }}>+</Text>
             </TouchableOpacity>
@@ -425,11 +539,24 @@ class Calculator extends React.Component {
               width: "90%", height: "90%",
               borderWidth: 1, borderColor: 'white',
               borderRadius: 5, justifyContent: 'center', alignItems: 'center'
-            }}onPress={() => {
-              this.setState({
-                operator: this.state.operator = '-',
-              })
-            }}
+            }} onPress={() => {
+
+
+              if (lastOperator == '') {
+                lastOperator = '-';
+                operator = '-';
+                this.calculations(lastOperator, operator);
+              }
+              else {
+                lastOperator = operator;
+                operator = '-';
+                this.calculations(lastOperator, operator);
+              }
+
+            }
+
+
+            }
             >
               <Text style={{ color: 'white', fontSize: 40 }}>-</Text>
             </TouchableOpacity>
@@ -448,10 +575,18 @@ class Calculator extends React.Component {
               width: "30%", height: "100%",
               borderWidth: 1, borderRadius: 5, borderColor: 'white',
               marginLeft: "2.5%", justifyContent: 'center', alignItems: 'center'
-            }}onPress={()=>{
-              this.setState({
-                operator:this.state.operator='*',   
-              })           
+            }} onPress={() => {
+              if (lastOperator == '') {
+                lastOperator = '*';
+                operator = '*';
+                this.calculations(lastOperator, operator);
+              }
+              else {
+                lastOperator = operator;
+                operator = '*';
+                this.calculations(lastOperator, operator);
+              }
+
             }}
             >
               <Text style={{ color: 'white', fontSize: 40 }}>*</Text>
@@ -474,8 +609,8 @@ class Calculator extends React.Component {
               width: "30%", height: "100%",
               marginLeft: "2.5%", borderWidth: 1, borderColor: 'white',
               borderRadius: 5, justifyContent: 'center', alignItems: 'center'
-            }}onPress={()=>{
-              this.calculations();
+            }} onPress={() => {
+              this.showResult(operator);
             }}
             >
               <Text style={{ color: 'white', fontSize: 40 }}>=</Text>
@@ -488,10 +623,18 @@ class Calculator extends React.Component {
               width: "90%", height: "90%",
               borderWidth: 1, borderColor: 'white',
               borderRadius: 5, justifyContent: 'center', alignItems: 'center'
-            }}onPress={() => {
-              this.setState({
-                operator: this.state.operator = '/',
-              })
+            }} onPress={() => {
+              if (lastOperator == '') {
+                lastOperator = '/';
+                operator = '/';
+                this.calculations(lastOperator, operator);
+              }
+              else {
+                lastOperator = operator;
+                operator = '/';
+                this.calculations(lastOperator, operator);
+              }
+
             }}
             >
               <Text style={{ color: 'white', fontSize: 40 }}>/</Text>
